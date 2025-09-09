@@ -1,4 +1,4 @@
-'use server';
+"use server"
 
 /**
  * @fileOverview A Genkit flow for providing intelligent insights and suggesting possible actions based on filtered data.
@@ -8,31 +8,31 @@
  * - SmartFilterInsightsOutput - The return type for the getSmartFilterInsights function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from "@/ai/genkit"
+import { z } from "zod"
 
 const SmartFilterInsightsInputSchema = z.object({
-  region: z.string().describe('The region to analyze.'),
-  performanceRange: z.string().describe('The performance range to focus on (e.g., low, medium, high).'),
-  timePeriod: z.string().describe('The time period for the analysis (e.g., last month, last quarter).'),
-  organization: z.string().describe('The organization to analyze (e.g., A, B, C).').optional(),
-});
-export type SmartFilterInsightsInput = z.infer<typeof SmartFilterInsightsInputSchema>;
+  region: z.string().describe("The region to analyze."),
+  performanceRange: z.string().describe("The performance range to focus on (e.g., low, medium, high)."),
+  timePeriod: z.string().describe("The time period for the analysis (e.g., last month, last quarter)."),
+  organization: z.string().describe("The organization to analyze (e.g., A, B, C).").optional(),
+})
+export type SmartFilterInsightsInput = z.infer<typeof SmartFilterInsightsInputSchema>
 
 const SmartFilterInsightsOutputSchema = z.object({
-  insights: z.string().describe('Intelligent insights based on the filtered data.'),
-  suggestedActions: z.string().describe('Possible actions to improve performance in the specified region.'),
-});
-export type SmartFilterInsightsOutput = z.infer<typeof SmartFilterInsightsOutputSchema>;
+  insights: z.string().describe("Intelligent insights based on the filtered data."),
+  suggestedActions: z.string().describe("Possible actions to improve performance in the specified region."),
+})
+export type SmartFilterInsightsOutput = z.infer<typeof SmartFilterInsightsOutputSchema>
 
 export async function getSmartFilterInsights(input: SmartFilterInsightsInput): Promise<SmartFilterInsightsOutput> {
-  return smartFilterInsightsFlow(input);
+  return smartFilterInsightsFlow(input)
 }
 
 const prompt = ai.definePrompt({
-  name: 'smartFilterInsightsPrompt',
-  input: {schema: SmartFilterInsightsInputSchema},
-  output: {schema: SmartFilterInsightsOutputSchema},
+  name: "smartFilterInsightsPrompt",
+  input: { schema: SmartFilterInsightsInputSchema },
+  output: { schema: SmartFilterInsightsOutputSchema },
   prompt: `You are a regional performance analyst for a petrochemical refining company.
 
   Based on the following filter parameters, provide intelligent insights and suggest possible actions to improve performance.
@@ -44,16 +44,16 @@ const prompt = ai.definePrompt({
 
   Insights:
   Suggested Actions:`, // Provide guidance on constructing the output
-});
+})
 
 const smartFilterInsightsFlow = ai.defineFlow(
   {
-    name: 'smartFilterInsightsFlow',
+    name: "smartFilterInsightsFlow",
     inputSchema: SmartFilterInsightsInputSchema,
     outputSchema: SmartFilterInsightsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
-  }
-);
+  async (input) => {
+    const { output } = await prompt(input)
+    return output!
+  },
+)
