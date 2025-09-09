@@ -93,40 +93,40 @@ export default function ApiManagementPage() {
   return (
     <div className="grid gap-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">API 관리</h1>
+        <h1 className="text-3xl font-bold tracking-tight">API Management</h1>
         <p className="text-muted-foreground">
-          API 키 관리, 엔드포인트 탐색, API 사용 모니터링
+          Manage keys, explore endpoints, and monitor your API usage.
         </p>
       </div>
       <Tabs defaultValue="keys" className="w-full">
         <TabsList>
-          <TabsTrigger value="keys">API 키</TabsTrigger>
-          <TabsTrigger value="endpoints">엔드포인트</TabsTrigger>
-          <TabsTrigger value="usage">사용 모니터링</TabsTrigger>
+          <TabsTrigger value="keys">API Keys</TabsTrigger>
+          <TabsTrigger value="endpoints">Endpoints</TabsTrigger>
+          <TabsTrigger value="usage">Usage Monitoring</TabsTrigger>
         </TabsList>
         <TabsContent value="keys">
           <Card>
             <CardHeader className="flex flex-row justify-between items-center">
               <div>
-                <CardTitle>API 키</CardTitle>
+                <CardTitle>API Keys</CardTitle>
                 <CardDescription>
-                  API 키 생성 및 관리
+                  Create and manage API keys for your applications.
                 </CardDescription>
               </div>
               <Button>
                 <PlusCircle className="mr-2 h-4 w-4" />
-                API 키 생성
+                Generate New Key
               </Button>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>이름</TableHead>
-                    <TableHead>키 미리보기</TableHead>
-                    <TableHead>생성일</TableHead>
-                    <TableHead>만료일</TableHead>
-                    <TableHead>상태</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Key Preview</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead>Expires</TableHead>
+                    <TableHead>Status</TableHead>
                     <TableHead>
                       <span className="sr-only">Actions</span>
                     </TableHead>
@@ -167,9 +167,9 @@ export default function ApiManagementPage() {
         <TabsContent value="endpoints">
           <Card>
             <CardHeader>
-              <CardTitle>API 엔드포인트</CardTitle>
+              <CardTitle>API Endpoints</CardTitle>
               <CardDescription>
-                사용 가능한 RESTful API 엔드포인트를 탐색하고 테스트
+                Browse and test available RESTful API endpoints.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -211,9 +211,9 @@ export default function ApiManagementPage() {
         <TabsContent value="usage">
           <Card>
             <CardHeader>
-              <CardTitle>API 사용 모니터링</CardTitle>
+              <CardTitle>API Usage Monitoring</CardTitle>
               <CardDescription>
-                최근 7일간의 API 사용 통계
+                Usage statistics for the last 7 days.
               </CardDescription>
             </CardHeader>
             <CardContent>
